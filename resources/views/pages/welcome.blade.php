@@ -1,4 +1,18 @@
 @extends('main')
+
+@section('title', '| Welcome!')
+
+@section('stylesheets')
+<style>
+
+    .active {
+        background: #4FA9DC;
+        color: #000;
+    }
+
+</style>
+@endsection
+
 @section('content')
     <div class="container mt-2">
         <div class="row">
@@ -60,4 +74,8 @@
         </div> <!-- /.row post -->
 
     </div>
+@endsection
+
+@section('scripts')
+
 @endsection

@@ -1,4 +1,18 @@
 @extends('main')
+
+@section('title', '| Contact')
+
+@section('stylesheets')
+<style>
+
+    .active {
+        background: #4FA9DC;
+        color: #000;
+    }
+
+</style>
+@endsection
+
 @section('content')
 
     <div class="container mt-5">
@@ -27,4 +41,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+
 @endsection
