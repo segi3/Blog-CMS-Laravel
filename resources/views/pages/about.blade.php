@@ -81,10 +81,10 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    about
+                    Hi! my name is {{ $fullname }}
                 </div>
                 <p>
-                    learning laravel!
+                    email me at {{ $email }}
                 </p>
             </div>
         </div>
