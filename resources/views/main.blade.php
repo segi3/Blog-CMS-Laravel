@@ -17,11 +17,10 @@
 
 <!-- footer -->
 @include('partials._footer')
-    
-@yield('scripts')
 
 @include('partials._javascripts')
 
+@yield('scripts')
 
 </body>
 </html>
