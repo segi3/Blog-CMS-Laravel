@@ -3,24 +3,25 @@
 
 <head>
 
-@include('_head')
+@include('partials._head')
 
 </head>
 
 <body>
 
 <!-- navbar -->
-@include('_nav')
+@include('partials._nav')
 
 <!-- main content -->
 @yield('content')
 
 <!-- footer -->
-@include('_footer')
+@include('partials._footer')
     
 @yield('scripts')
 
-@include('_javascripts')
-   
+@include('partials._javascripts')
+
+
 </body>
 </html>
