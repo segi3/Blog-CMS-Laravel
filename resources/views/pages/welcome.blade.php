@@ -14,7 +14,6 @@
 @endsection
 
 @section('content')
-    <div class="container mt-2">
         <div class="row">
             <div class="col-md-12">
                 <div class="jumbotron">
@@ -72,8 +71,6 @@
                 <h2>Sidebar</h2>
             </div>
         </div> <!-- /.row post -->
-
-    </div>
 @endsection
 
 @section('scripts')
