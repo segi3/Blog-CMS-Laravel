@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
+use Session;
 
 class PostController extends Controller
 {
@@ -15,7 +16,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        // create variable and store all blog posts from the database
+        $posts = Post::all();
+
+        // return a view and pass in the variable
+        return view('posts.index')->with('posts', $posts);
     }
 
     /**
@@ -51,6 +56,8 @@ class PostController extends Controller
         
         $post->save();
 
+        Session::flash('success', 'Blog post was successfully saved!');
+
         // redirect to another page
         return redirect()->route('posts.show', $post->id);
 
@@ -64,7 +71,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.show')->with('post', $post);
     }
 
     /**
@@ -75,7 +83,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        // find the post in the database and save as variable
+        $post = Post::find($id);
+        
+        // return a view and pass in variable
+        return view('posts.edit')->with('post', $post);
     }
 
     /**
