@@ -14,8 +14,6 @@
 @endsection
 
 @section('content')
-
-    <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
                 <h1>Contact me</h1>
@@ -40,7 +38,6 @@
                 </form>
             </div>
         </div>
-    </div>
 @endsection
 
 @section('scripts')
