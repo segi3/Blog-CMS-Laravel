@@ -13,7 +13,11 @@
 @include('partials._nav')
 
 <!-- main content -->
-@yield('content')
+    <div class="container">
+        @include('partials._messages')
+
+        @yield('content')
+    </div>
 
 <!-- footer -->
 @include('partials._footer')
