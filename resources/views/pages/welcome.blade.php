@@ -28,43 +28,18 @@
 
         <div class="row">
             <div class="col-md-8">
+            @foreach($posts as $post)
+
                 <div class="post">
-                    <h3>Post Title</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore facere debitis provident incidunt perferendis! Quisquam magnam cumque reiciendis asperiores nihil soluta repellendus. Dolorem culpa, alias sapiente sequi reprehenderit ullam minima.</p>
-                    <a class="btn btn-primary" href="#">Read More</a>
+                    <h3>{{ $post->title }}</h3>
+                    <p>{{ substr($post->body, 0, 300) }}{{ strlen($post->body) > 300 ? "..." : "" }}</p>
+                    <a class="btn btn-primary" href="{{ url('blog/'.$post->slug) }}">Read More</a>
                 </div>
 
                 <hr class="my-4">
+            
+            @endforeach
 
-                <div class="post">
-                    <h3>Post Title</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore facere debitis provident incidunt perferendis! Quisquam magnam cumque reiciendis asperiores nihil soluta repellendus. Dolorem culpa, alias sapiente sequi reprehenderit ullam minima.</p>
-                    <a class="btn btn-primary" href="#">Read More</a>
-                </div>
-
-                <hr class="my-4">
-
-                <div class="post">
-                    <h3>Post Title</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore facere debitis provident incidunt perferendis! Quisquam magnam cumque reiciendis asperiores nihil soluta repellendus. Dolorem culpa, alias sapiente sequi reprehenderit ullam minima.</p>
-                    <a class="btn btn-primary" href="#">Read More</a>
-                </div>
-
-                <hr class="my-4">
-
-                <div class="post">
-                    <h3>Post Title</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore facere debitis provident incidunt perferendis! Quisquam magnam cumque reiciendis asperiores nihil soluta repellendus. Dolorem culpa, alias sapiente sequi reprehenderit ullam minima.</p>
-                    <a class="btn btn-primary" href="#">Read More</a>
-                </div>
-
-                <hr class="my-4">
-
-                <div class="post">
-                    <h3>Post Title</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore facere debitis provident incidunt perferendis! Quisquam magnam cumque reiciendis asperiores nihil soluta repellendus. Dolorem culpa, alias sapiente sequi reprehenderit ullam minima.</p>
-                    <a class="btn btn-primary" href="#">Read More</a>
-                </div>
             </div>
 
             <div class="col-md-3 offset-md-1">
