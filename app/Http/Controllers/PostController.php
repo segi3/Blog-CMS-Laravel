@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         // create variable and store all blog posts from the database
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')->paginate(15);
 
         // return a view and pass in the variable
         return view('posts.index')->with('posts', $posts);
@@ -45,13 +45,15 @@ class PostController extends Controller
         // csrf token is automatically validated
         $validatedData = $request->validate([
             'title' => 'required|max:255',
-            'body' => 'required',
+            'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+            'body' => 'required'
         ]);
 
         // store in the database
         $post = new Post;
 
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->body = $request->body;
         
         $post->save();
@@ -100,16 +102,26 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validate data
-        $validatedData = $request->validate([
-            'title' => 'required|max:255',
-            'body' => 'required',
-        ]);
-
-        // Save data to database
         $post = Post::find($id);
 
+        // Validate data
+        if ($request->slug == $post->slug) {
+            $validatedData = $request->validate([
+                'title' => 'required|max:255',
+                'body' => 'required',
+            ]);
+        }else {
+            $validatedData = $request->validate([
+                'title' => 'required|max:255',
+                'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+                'body' => 'required',
+            ]);
+        }
+        
+
+        // Save data to database
         $post->title = $request->title;
+        $post->title = $request->slug;
         $post->body = $request->body;
 
         $post->save(); // save to database
@@ -130,6 +142,12 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+
+        $post->delete();
+
+        Session::flash('success', 'The post was successfully deleted!');
+
+        return redirect()->route('posts.index');
     }
 }
