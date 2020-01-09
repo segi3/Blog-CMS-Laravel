@@ -7,10 +7,16 @@
     {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT']) !!}
     <div class="form-row">
     <div class="col-md-8 mb-3">
+
         {{ Form::label('title', 'Title:') }}
         {{ Form::text('title', null, ["class" => 'form-control form-control-lg']) }}
+
+        {{ Form::label('slug', 'Slug:' )}}
+        {{ Form::text('slug', null, ["class" => "form-control"]) }}
+
         {{ Form::label('body', 'Post Body:') }}
         {{ Form::textarea('body', null, ["class" => 'form-control']) }}
+
     </div>
     <div class="col-md-4 mb-3">
         <div class="card">
