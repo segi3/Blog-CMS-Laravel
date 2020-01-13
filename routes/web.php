@@ -11,6 +11,15 @@
 |
 */
 
+// // Auth login routes
+// Route::get('auth/login', 'Auth/LoginController@getLogin');
+// Route::post('auth/login', 'Auth/LoginController@postLogin');
+// Route::get('auth/logout', 'Auth/LoginController@getLogout');
+// // Auth registratin routes
+// Route::get('auth/register', 'Auth/RegisterController@getRegister');
+// ROute::post('auth/register', 'Auth/RegisterController@postRegister');
+
+
 Route::get('/', 'PagesController@getIndex');
 Route::get('about', 'PagesController@getAbout');
 Route::get('contact', 'PagesController@getContact');
@@ -19,3 +28,7 @@ Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getS
 Route::get('blog', ['as' => 'blog.index', 'uses' => 'BlogController@getIndex']);
 
 Route::resource('posts', 'PostController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
