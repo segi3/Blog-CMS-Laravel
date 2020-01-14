@@ -11,24 +11,21 @@
 |
 */
 
-// // Auth login routes
-// Route::get('auth/login', 'Auth/LoginController@getLogin');
-// Route::post('auth/login', 'Auth/LoginController@postLogin');
-// Route::get('auth/logout', 'Auth/LoginController@getLogout');
-// // Auth registratin routes
-// Route::get('auth/register', 'Auth/RegisterController@getRegister');
-// ROute::post('auth/register', 'Auth/RegisterController@postRegister');
-
-
+// page routes
 Route::get('/', 'PagesController@getIndex');
 Route::get('about', 'PagesController@getAbout');
 Route::get('contact', 'PagesController@getContact');
 
+// blog routes
 Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle'] )->where('slug', '[\w\d\-\_]+');
 Route::get('blog', ['as' => 'blog.index', 'uses' => 'BlogController@getIndex']);
 
+// post routes
 Route::resource('posts', 'PostController');
 
-Auth::routes();
+// category routes
+Route::resource('categories', 'CategoryController', ['except' => ['create']]);
 
+// auth
+Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
