@@ -22,6 +22,13 @@
                 {{ Form::label('slug', 'Slug:') }}
                 {{ Form::text('slug', null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255', 'data-parsley-alphadash' => '')) }}
 
+                {{ Form::label('category', 'Category:') }}
+                <select name="category" class="form-control">
+                    @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+
                 {{ Form::label('body', 'Post Body:') }}
                 {{ Form::textarea('body', null, array('class' => 'form-control', 'required' => '')) }}
                 
