@@ -27,7 +27,7 @@
                 <h5>Published: {{ date('j M Y', strtotime($post->created_at)) }}</h5>
                 <p>{{ substr($post->body, 0, 250) }}{{ strlen($post->body) > 250 ? '...':"" }}</p>
 
-                <a href="{{ route('blog.single', $post->id) }}" class="btn btn-primary">Read More</a>
+                <a href="{{ route('blog.single', $post->slug) }}" class="btn btn-primary">Read More</a>
 
                 <hr class="mt-5">
             </div>
