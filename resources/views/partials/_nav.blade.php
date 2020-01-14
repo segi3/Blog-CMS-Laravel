@@ -28,6 +28,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{{ route('posts.index') }}">Posts</a>
+                            <a class="dropdown-item" href="{{ route('categories.index') }}">Categories</a>
                             <hr>
                             <div class="container">
                                 <form id="logout-form" action="{{ url('logout') }}" method="POST">
