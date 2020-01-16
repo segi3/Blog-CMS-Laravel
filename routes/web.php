@@ -26,6 +26,9 @@ Route::resource('posts', 'PostController');
 // category routes
 Route::resource('categories', 'CategoryController', ['except' => ['create']]);
 
+// tag routes
+Route::resource('tags', 'TagController', ['except' => ['create']]);
+
 // auth
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
