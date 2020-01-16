@@ -11,12 +11,20 @@
                     <thead>
                         <th>#</th>
                         <th>Name</th>
+                        <th>Action</th>
                     </thead>
                     <tbody>
                         @foreach ($categories as $category)
                         <tr>
                             <th>{{ $category->id }}</th>
                             <td>{{ $category->name }}</td>
+                            <td>
+                                {!! Form::open(['route' => ['categories.destroy', $category->id], 'method' => 'DELETE']) !!}
+
+                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) !!}
+
+                                {!! Form::close() !!}
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
