@@ -53,7 +53,7 @@ window.Parsley.addValidator('alphadash', {
 });
 ```
 
-**Parsley.js** `v4.0.12` [@](https://select2.org/)
+**Select2.js** `v4.0.12` [@](https://select2.org/)
 * Form Multiple Select
 ```php
 <select  name="tag[]"  class="form-control select2-multi-tag"  multiple="multiple">
