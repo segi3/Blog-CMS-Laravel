@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Category;
+use App\Tag;
 use Session;
 
 class PostController extends Controller
@@ -35,7 +37,13 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        // get categories
+        $categories = Category::all();
+
+        // get tags
+        $tags = Tag::all();
+
+        return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -48,9 +56,11 @@ class PostController extends Controller
     {
         // validate the data
         // csrf token is automatically validated
+        // dd($request);
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+            'category' => 'required|integer',
             'body' => 'required'
         ]);
 
@@ -60,8 +70,12 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->body = $request->body;
+        $post->category_id = $request->category;
         
         $post->save();
+
+        // tag
+        $post->tags()->sync($request->tag, false);
         
         // flash success message
         Session::flash('success', 'Blog post was successfully saved!');
@@ -93,9 +107,15 @@ class PostController extends Controller
     {
         // find the post in the database and save as variable
         $post = Post::find($id);
+
+        // get all categories
+        $categories = Category::all();
+
+        // get tags
+        $tags = Tag::pluck('name','id')->all();
         
         // return a view and pass in variable
-        return view('posts.edit')->with('post', $post);
+        return view('posts.edit')->with('post', $post)->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -113,12 +133,14 @@ class PostController extends Controller
         if ($request->slug == $post->slug) {
             $validatedData = $request->validate([
                 'title' => 'required|max:255',
+                'category' => 'required|integer',
                 'body' => 'required',
             ]);
         }else {
             $validatedData = $request->validate([
                 'title' => 'required|max:255',
                 'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+                'category' => 'required|integer',
                 'body' => 'required',
             ]);
         }
@@ -127,9 +149,18 @@ class PostController extends Controller
         // Save data to database
         $post->title = $request->title;
         $post->title = $request->slug;
+        $post->category_id = $request->category;
         $post->body = $request->body;
 
         $post->save(); // save to database
+
+        // sync tags
+        if (isset($request->tag)){
+            $post->tags()->sync($request->tag, true);
+        }else{
+            $post->tags()->sync([], true);
+        }
+        
 
         // set flash data with success message
         Session::flash('success', 'This post was successfully saved!');
