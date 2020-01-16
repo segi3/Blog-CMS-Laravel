@@ -2,6 +2,11 @@
 
 @section('title', '| Edit post')
 
+@section('stylesheets')
+{!! Html::style('css/parsley.css') !!}
+{!! Html::style('css/select2.min.css') !!}
+@endsection
+
 @section('content')
 
     {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT']) !!}
@@ -20,6 +25,9 @@
             <option value="{{$category->id}}" {{ ($post->category->id == $category->id) ? 'selected':''}} >{{ $category->name }}</option>
             @endforeach 
         </select>
+
+        {{ Form::label('tag', 'Tag:') }}
+        {{ Form::select('tag[]', $tags, $post->tags->pluck('id')->all(), ['class' => 'form-control select2-multi-tag', 'multiple' => 'multiple']) }}
 
         {{ Form::label('body', 'Post Body:') }}
         {{ Form::textarea('body', null, ["class" => 'form-control']) }}
@@ -50,4 +58,29 @@
     </div>
     </div>
     {!! Form::close() !!}
+@endsection
+
+@section('scripts')
+{!! Html::script('js/parsley.min.js') !!}
+{!! Html::script('js/select2.min.js') !!}
+
+
+<script type="text/javascript">
+    window.Parsley.addValidator('alphadash', {
+        validateString: function(value) {
+        return true == (/^[a-z-_]+$/.test(value));
+    },
+    messages: {
+        en: 'Only alphabetic letters, dashes and underscores allowed.'
+    }
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.select2-multi-tag').select2();
+        $('.select2-multi').select2().val({!! json_encode($post->tags()->allRelatedIds()) !!}).trigger('change');
+        
+    });
+</script>
 @endsection
