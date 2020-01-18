@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Comment;
 
 class BlogController extends Controller
 {
@@ -20,9 +21,11 @@ class BlogController extends Controller
         // get() fetch a collection of object, must be iterated or collection[0]
         // first() get a single object
         $post = Post::where('slug', '=', $slug)->first();
+
+        $comments = $post->comments->sortByDesc('id');
         
         // return the view and pass in the post object
-        return view('blog.single')->withPost($post);
+        return view('blog.single')->withPost($post)->withComments($comments);
 
     }
 

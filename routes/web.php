@@ -15,6 +15,8 @@
 Route::get('/', 'PagesController@getIndex');
 Route::get('about', 'PagesController@getAbout');
 Route::get('contact', 'PagesController@getContact');
+Route::get('contact', ['as' => 'page.contact', 'uses' => 'PagesController@getContact']);
+Route::post('contact', 'PagesController@postContact'); // send email
 
 // blog routes
 Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle'] )->where('slug', '[\w\d\-\_]+');
@@ -22,6 +24,14 @@ Route::get('blog', ['as' => 'blog.index', 'uses' => 'BlogController@getIndex']);
 
 // post routes
 Route::resource('posts', 'PostController');
+
+// comment routes
+Route::post('comments/{post_id}', ['uses' => 'CommentController@store', 'as' => 'comments.store']);
+Route::get('comments/{id}/edit', ['uses' => 'CommentController@edit', 'as' => 'comments.edit']);
+Route::put('comments/{id}', ['uses' => 'CommentController@update', 'as' => 'comments.update']);
+Route::delete('comments/{id}', ['uses' => 'CommentController@destroy', 'as' => 'comments.destroy']);
+
+
 
 // category routes
 Route::resource('categories', 'CategoryController', ['except' => ['create']]);

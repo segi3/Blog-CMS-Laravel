@@ -7,6 +7,43 @@
             <div class="col-md-8">
                 <h1>{{ $post->title }}</h1>
                 <p class="lead">{{ $post->body }}</p>
+                <hr>
+                <div class="tags">
+                    @foreach($post->tags as $tag)
+                        <span class="badge badge-pill badge-secondary">{{ $tag->name }}</span>
+                    @endforeach
+                </div>
+
+                <div id="backend-comment">
+                    <h1>Comments <small>{{ $post->comments->count() }}</small></h1>
+
+                    <table class="table">
+                        <thead>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Comment</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            @foreach ($post->comments as $comment)
+                            <tr>
+                                <td>{{ $comment->name }}</td>
+                                <td>{{ $comment->email }}</td>
+                                <td>{{ $comment->comment }}</td>
+                                <td>
+                                    <span>                                    <a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-sm btn-dark">Edit</a>
+                                    </span>
+                                    
+                                        {!! Form::open(['route' => ['comments.destroy', $comment->id], 'method' => 'DELETE']) !!}
+                                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                                        {!! Form::close() !!}
+                                    
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         
 
