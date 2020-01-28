@@ -22,10 +22,10 @@
         
         <div class="row" id="show-posts">
         @foreach ($posts as $post)
-            <div class="com-md-8 offset-md-2 mt-5">
+            <div class="col-md-8 offset-md-2 mt-5">
                 <h2>{{ $post->title }}</h2>
                 <h5>Published: {{ date('j M Y', strtotime($post->created_at)) }}</h5>
-                <p>{{ substr($post->body, 0, 250) }}{{ strlen($post->body) > 250 ? '...':"" }}</p>
+                <p>{{ substr(strip_tags($post->body), 0, 250) }}{{ strlen(strip_tags($post->body)) > 250 ? '...':"" }}</p>
 
                 <a href="{{ route('blog.single', $post->slug) }}" class="btn btn-primary">Read More</a>
 

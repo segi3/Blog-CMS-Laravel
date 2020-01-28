@@ -3,8 +3,20 @@
 @section('title', '| Create Post')
 
 @section('stylesheets')
+
 {!! Html::style('css/parsley.css') !!}
 {!! Html::style('css/select2.min.css') !!}
+
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: 'textarea#tinymce',
+        plugins: 'link code imagetools image bootstrap',
+        valid_elements: '*[*]',
+        extended_valid_elements: 'span[*]'
+    });
+</script>
+
 @endsection
 
 @section('content')
@@ -38,7 +50,7 @@
                 </select>
 
                 {{ Form::label('body', 'Post Body:') }}
-                {{ Form::textarea('body', null, array('class' => 'form-control', 'required' => '')) }}
+                {{ Form::textarea('body', null, array('class' => 'form-control', 'id' => 'tinymce')) }}
                 
                 {{ Form::submit('Create New Post', array('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 10px')) }}
 
