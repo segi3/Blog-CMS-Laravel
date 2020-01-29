@@ -5,8 +5,10 @@ Content management system untuk Blog
  - [x] Categories CRUD
  - [x] Tags CRUD
  - [x] Auth system
+ - [ ] multiple security level
  - [ ] Post-article multiple choices
  - [x] Comments
+ - [ ] nested comment->reply
  - [x] wysiwyg
  - [ ] wysiwyg images
  - [ ] Count page visits
