@@ -3,10 +3,12 @@ Content management system untuk Blog
 
  - [x] Posts CRUD
  - [x] Categories CRUD
- - [ ] Tags CRUD
+ - [x] Tags CRUD
  - [x] Auth system
- - [ ] Comments
- - [ ] wysiwyg
+ - [ ] Post-article multiple choices
+ - [x] Comments
+ - [x] wysiwyg
+ - [ ] wysiwyg images
  - [ ] Count page visits
 
 **Laravel** `v.6.2` **PHP Framework** [@](https://laravel.com/)
@@ -65,5 +67,16 @@ window.Parsley.addValidator('alphadash', {
 ```javascript
 $(document).ready(function() {
 	$('.select2-multi-tag').select2();
+});
+```
+
+**tinyMCE** `v5` [@](https://www.tiny.cloud/)
+* WYSIWYG editor
+```html
+<textarea id="default">Hello, World!</textarea>
+```
+```javascript
+tinymce.init({
+  selector: 'textarea#default',
 });
 ```
