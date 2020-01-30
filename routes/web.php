@@ -31,8 +31,6 @@ Route::get('comments/{id}/edit', ['uses' => 'CommentController@edit', 'as' => 'c
 Route::put('comments/{id}', ['uses' => 'CommentController@update', 'as' => 'comments.update']);
 Route::delete('comments/{id}', ['uses' => 'CommentController@destroy', 'as' => 'comments.destroy']);
 
-
-
 // category routes
 Route::resource('categories', 'CategoryController', ['except' => ['create']]);
 
