@@ -3,14 +3,7 @@
 @section('title', '| Contact')
 
 @section('stylesheets')
-<style>
 
-    .active {
-        background: #4FA9DC;
-        color: #000;
-    }
-
-</style>
 @endsection
 
 @section('content')
@@ -42,5 +35,9 @@
 @endsection
 
 @section('scripts')
+
+<script type="text/javascript">
+    var APP_URL = {!! json_encode(url('/')) !!}
+</script>
 
 @endsection

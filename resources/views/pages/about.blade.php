@@ -3,14 +3,7 @@
 @section('title', '| About')
 
 @section('stylesheets')
-<style>
 
-    .active {
-        background: #4FA9DC;
-        color: #000;
-    }
-
-</style>
 @endsection
 
 @section('content')

@@ -3,7 +3,7 @@
 @section('title', '| Welcome!')
 
 @section('stylesheets')
-{!! Html::style('css/style.css') !!}
+
 @section('content')
 
 @section('content')
@@ -42,5 +42,9 @@
 @endsection
 
 @section('scripts')
+
+<script type="text/javascript">
+    var APP_URL = {!! json_encode(url('http://127.0.0.1:8000/')) !!}
+</script>
 
 @endsection
